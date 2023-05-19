@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="dist/output.css" />
+    <title>Tailwindcss</title>
+  </head>
+  <body class="bg-slate-200">
+    <div class="container mx-auto">
+      <!-- <table class="table-auto border-separate">
+        <thead>
+          <tr>
+            <th rowspan="2" class="p-2 bg-slate-400">Nume task</th>
+            <th rowspan="2" class="p-2 bg-slate-400">Durata</th>
+            <th rowspan="2" class="p-2 bg-slate-400">Data start</th>
+            <th rowspan="2" class="p-2 bg-slate-400">Data finalizare</th>
+            <th rowspan="2" class="p-2 bg-slate-400">Owner</th>
+            <th colspan="5" class="p-2 bg-slate-400">Mai 15</th>
+            <th colspan="5" class="p-2 bg-slate-400">Mai 22</th>
+          </tr>
+          <tr>
+            <th class="p-2 bg-slate-400">L</th>
+            <th class="p-2 bg-slate-400">M</th>
+            <th class="p-2 bg-slate-400">M</th>
+            <th class="p-2 bg-slate-400">J</th>
+            <th class="p-2 bg-slate-400">V</th>
+            <th class="p-2 bg-slate-400">L</th>
+            <th class="p-2 bg-slate-400">M</th>
+            <th class="p-2 bg-slate-400">M</th>
+            <th class="p-2 bg-slate-400">J</th>
+            <th class="p-2 bg-slate-400">V</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+          <tr class="bg-white">
+            <td>Initiating</td>
+            <td>12</td>
+            <td>1/21</td>
+            <td colspan="100%">2/2</td>
+          </tr>
+          <tr class="bg-slate-300">
+            <td class="px-4">Identiy objective</td>
+            <td>4</td>
+            <td>1/21</td>
+            <td>1,23</td>
+            <td>Taylor</td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+            <td class="p-2 bg-slate-400"></td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div>
+    <script>
+      const dataTable = {
+        headerItems: {
+          static: ['Task name', 'Duration', 'Start date', 'Finish date', 'Owner']
+        }
+      }
+
+      const createMonthHeader = (year, month) => {
+        let d = new Date(year, month)
+        return `${d.toLocaleDateString('RO', { month: 'long' })} ${d.getFullYear()}`
+      }
+
+      const createCalendar = (year, month) => {
+        let dayCells = []
+        let d = new Date(year, month)
+        while (d.getMonth() == month) {
+          // if (!(d.getDay() == 6 || d.getDay() == 0)) {
+          dayCells.push(`<th class="p-2 bg-slate-400">${d.getDate()}</th>`)
+          // }
+          d.setDate(d.getDate() + 1)
+        }
+        return {
+          cellData: dayCells.join(''),
+          cellDataLength: dayCells.length
+        }
+      }
+
+      class MyTable extends HTMLElement {
+        constructor() {
+          super()
+        }
+        connectedCallback() {
+          let headerItems = dataTable.headerItems.static.map(e => `<th rowspan="2" class="p-2 bg-slate-400">${e}</th>`).join('')
+          this.innerHTML = `
+            <table class="table-auto border-separate">
+              <thead>
+                <tr>
+                  ${headerItems}
+                  <th colspan="${createCalendar(2023, 4).cellDataLength}" class="p-2 bg-slate-400">${createMonthHeader(2023, 4)}</th>
+                </tr>
+                <tr>
+                  ${createCalendar(2023, 4).cellData}
+                </tr>
+              </thead>
+            </table>
+          `
+        }
+      }
+
+      customElements.define('my-table', MyTable)
+      document.body.appendChild(document.createElement('my-table'))
+    </script>
+  </body>
+</html>
