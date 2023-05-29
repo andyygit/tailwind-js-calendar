@@ -62,7 +62,57 @@
     </div>
     <script>
       const dataTable = {
-        headerItems: ['Task name', 'Duration', 'Start date', 'Finish date', 'Owner']
+        headerItems: ['Task name', 'Duration', 'Start date', 'Finish date', 'Owner'],
+        rows: [
+          {
+            name: 'Initiating',
+            duration: 0,
+            startDate: 0,
+            endDate: 0,
+            owner: '',
+            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+          },
+          {
+            name: 'Identify objective',
+            duration: 0,
+            startDate: 0,
+            endDate: 0,
+            owner: 'Gigi',
+            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+          },
+          {
+            name: 'Determine project feasibility',
+            duration: 0,
+            startDate: 0,
+            endDate: 0,
+            owner: 'Gigi',
+            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+          },
+          {
+            name: 'Identify stakeholders',
+            duration: 0,
+            startDate: 0,
+            endDate: 0,
+            owner: 'Gigi',
+            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+          },
+          {
+            name: 'Determine scope',
+            duration: 0,
+            startDate: 0,
+            endDate: 0,
+            owner: 'Gigi',
+            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+          },
+          {
+            name: 'Sign project charter',
+            duration: 0,
+            startDate: 0,
+            endDate: 0,
+            owner: 'Gigi',
+            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+          }
+        ]
       }
 
       const createCalendar = (year, month) => {
