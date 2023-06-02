@@ -65,127 +65,175 @@
         headerItems: ['Task name', 'Duration', 'Start date', 'Finish date', 'Owner'],
         rows: [
           {
+            title: true,
             name: 'Initiating',
             duration: 0,
             startDate: 0,
             endDate: 0,
             owner: '',
-            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+            month: []
           },
           {
+            title: false,
             name: 'Identify objective',
             duration: 0,
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+            month: ['', 'red', '', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
           },
           {
+            title: false,
             name: 'Determine project feasibility',
             duration: 0,
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
           },
           {
+            title: false,
             name: 'Identify stakeholders',
             duration: 0,
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
           },
           {
+            title: false,
             name: 'Determine scope',
             duration: 0,
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
           },
           {
+            title: false,
             name: 'Sign project charter',
             duration: 0,
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: [4, 31, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
           }
         ]
-      }
-
-      const createCalendar = (year, month) => {
-        let dayCells = []
-        let d = new Date(year, month)
-        while (d.getMonth() == month) {
-          if (!(d.getDay() == 6 || d.getDay() == 0)) {
-            dayCells.push(`<th class="p-2 bg-slate-400">${d.getDate()}</th>`)
-          }
-          d.setDate(d.getDate() + 1)
-        }
-        d.setDate(d.getDate() - 1) //reset month
-        return {
-          cellData: dayCells.join(''),
-          cellDataLength: dayCells.length,
-          monthHeader: `${d.toLocaleDateString('RO', { month: 'long' })} ${d.getFullYear()}`
-        }
       }
 
       class MyCell extends HTMLElement {
         constructor() {
           super()
         }
-        connectedCallback() {
-          this.innerHTML = `<td class="p-2 bg-slate-400"></td>`
-        }
+        connectedCallback() {}
       }
 
       class MyTable extends HTMLElement {
         constructor() {
           super()
-          this.calendarData = createCalendar(2023, 4)
-          this.cellDataLength = this.calendarData.cellDataLength
-          this.cellData = this.calendarData.cellData
-          this.monthHeader = this.calendarData.monthHeader
         }
         connectedCallback() {
-          let headerItems = dataTable.headerItems.map(e => `<th rowspan="2" class="p-2 bg-slate-400">${e}</th>`).join('')
-          this.innerHTML = `
-            <table class="table-auto border-separate">
-              <thead>
-                <tr>
-                  ${headerItems}
-                  <th colspan="${this.cellDataLength}" class="p-2 bg-slate-400">${this.monthHeader}</th>
-                </tr>
-                <tr>
-                  ${this.cellData}
-                </tr>
-              </thead>
-              <tbody class="text-sm">
-                <tr class="bg-white">
-                  <td>Initiating</td>
-                  <td>12</td>
-                  <td>1/21</td>
-                  <td>2/2</td>
-                  <td></td>
-                  <td colspan="100%"></td>
-                </tr>
-                <tr class="bg-slate-300">
-                  <td class="px-4">Identiy objective</td>
-                  <td>4</td>
-                  <td>1/21</td>
-                  <td>1/23</td>
-                  <td>Gigi</td>
-                </tr>
-              </tbody>
-            </table>
-          `
+          let year = this.getAttribute('year')
+          let month = this.getAttribute('month')
+
+          let dayCells = []
+          let d = new Date(year, month)
+
+          let monthHeader = `${d.toLocaleDateString('RO', { month: 'long' })} ${d.getFullYear()}`
+
+          while (d.getMonth() == month) {
+            // if (!(d.getDay() == 6 || d.getDay() == 0)) {
+            dayCells.push(d.getDate())
+            // }
+            d.setDate(d.getDate() + 1)
+          }
+
+          let myTable = document.createElement('table')
+          myTable.className = 'table-auto border-separate'
+
+          let myTableHead = document.createElement('thead')
+
+          let myTableHeadRow = document.createElement('tr')
+
+          for (let j = dataTable.headerItems.length, i = 0; i < j; i++) {
+            let th = document.createElement('th')
+            th.className = 'p-2 bg-slate-400'
+            th.setAttribute('rowspan', '2')
+            th.appendChild(document.createTextNode(dataTable.headerItems[i]))
+            myTableHeadRow.appendChild(th)
+          }
+
+          let th = document.createElement('th')
+          th.className = 'p-2 bg-slate-400'
+          th.setAttribute('colspan', `${dayCells.length}`)
+          th.appendChild(document.createTextNode(monthHeader))
+          myTableHeadRow.appendChild(th)
+          myTableHead.appendChild(myTableHeadRow)
+
+          myTableHeadRow = document.createElement('tr')
+          for (let j = dayCells.length, i = 0; i < j; i++) {
+            let th = document.createElement('th')
+            th.className = 'p-2 bg-slate-400'
+            th.appendChild(document.createTextNode(dayCells[i]))
+            myTableHeadRow.appendChild(th)
+          }
+          myTableHead.appendChild(myTableHeadRow)
+
+          myTable.appendChild(myTableHead)
+
+          let myTableBody = document.createElement('tbody')
+          myTableBody.className = 'text-sm'
+
+          for (let j = dataTable.rows.length, i = 0; i < j; i++) {
+            let tableBodyRow = document.createElement('tr')
+            tableBodyRow.className = i % 2 == 0 ? 'bg-white' : 'bg-slate-300'
+            let td = document.createElement('td')
+            td.appendChild(document.createTextNode(dataTable.rows[i].name))
+            td.className = dataTable.rows[i].title ? 'font-bold' : 'px-4'
+            tableBodyRow.appendChild(td)
+            td = document.createElement('td')
+            td.className = dataTable.rows[i].title ? '' : ''
+            td.appendChild(document.createTextNode(dataTable.rows[i].duration))
+            tableBodyRow.appendChild(td)
+            td = document.createElement('td')
+            td.appendChild(document.createTextNode(dataTable.rows[i].startDate))
+            tableBodyRow.appendChild(td)
+            td = document.createElement('td')
+            td.appendChild(document.createTextNode(dataTable.rows[i].endDate))
+            tableBodyRow.appendChild(td)
+            td = document.createElement('td')
+            td.appendChild(document.createTextNode(dataTable.rows[i].owner))
+            tableBodyRow.appendChild(td)
+            if (dataTable.rows[i].title) {
+              td = document.createElement('td')
+              td.setAttribute('colspan', '100%')
+              tableBodyRow.appendChild(td)
+            } else {
+              dataTable.rows[i].month.forEach((item, index) => {
+                td = document.createElement('td')
+                td.className = `bg-${item}-500 cursor-pointer`
+                td.setAttribute('data-index', index)
+                td.setAttribute('data-color', item)
+                tableBodyRow.appendChild(td)
+              })
+            }
+            tableBodyRow.addEventListener('click', e => {
+              console.log(e.target.dataset.color == '' ? 'no color' : e.target.dataset.color)
+            })
+            myTableBody.appendChild(tableBodyRow)
+          }
+
+          myTable.appendChild(myTableBody)
+
+          this.appendChild(myTable)
         }
       }
 
       customElements.define('my-table', MyTable)
-      document.body.appendChild(document.createElement('my-table'))
+      let myTable = document.createElement('my-table')
+      myTable.setAttribute('year', '2023')
+      myTable.setAttribute('month', '4')
+      document.body.appendChild(myTable)
     </script>
   </body>
 </html>
