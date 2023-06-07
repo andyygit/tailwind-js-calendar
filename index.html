@@ -60,6 +60,21 @@
         </tbody>
       </table> -->
     </div>
+    <fieldset class="flex">
+      <legend>Alege culoarea activă:</legend>
+      <input type="radio" title="rosu" name="culoare" id="rosu" class="" value="bg-red-500" checked />
+      <label for="rosu" class="bg-red-500">
+        <div class="p-2"></div>
+      </label>
+      <input type="radio" title="galben" name="culoare" id="galben" class="" value="bg-yellow-500" />
+      <label for="galben" class="bg-yellow-500">
+        <div class="p-2"></div>
+      </label>
+      <input type="radio" title="albastru" name="culoare" id="albastru" class="" value="bg-blue-500" />
+      <label for="albastru" class="bg-blue-500">
+        <div class="p-2"></div>
+      </label>
+    </fieldset>
     <script>
       const dataTable = {
         headerItems: ['Task name', 'Duration', 'Start date', 'Finish date', 'Owner'],
@@ -211,14 +226,17 @@
             } else {
               dataTable.rows[i].month.forEach((item, index) => {
                 td = document.createElement('td')
-                td.className = `bg-${item}-500 cursor-pointer`
+                td.className = `${item ? `bg-${item}-500 ` : ''}cursor-pointer`
                 td.setAttribute('data-index', index)
-                td.setAttribute('data-color', item)
+                // td.setAttribute('data-color', item)
                 tableBodyRow.appendChild(td)
               })
             }
             tableBodyRow.addEventListener('click', e => {
-              console.log(e.target.dataset.color == '' ? 'no color' : e.target.dataset.color)
+              // console.log(e.target.dataset.color == '' ? 'no color' : e.target.dataset.color)
+              let color = document.querySelector('input[name="culoare"]:checked').value
+              console.log(color)
+              e.target.className = `${color} cursor-pointer`
             })
             myTableBody.appendChild(tableBodyRow)
           }
