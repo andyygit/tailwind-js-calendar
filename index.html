@@ -62,16 +62,20 @@
     </div>
     <fieldset class="flex">
       <legend>Alege culoarea activă:</legend>
-      <input type="radio" title="rosu" name="culoare" id="rosu" class="" value="bg-red-500" checked />
-      <label for="rosu" class="bg-red-500">
+      <input type="radio" title="gri" name="culoare" id="gri" class="hidden" value="bg-slate-500" checked />
+      <label for="gri" class="bg-slate-500">
         <div class="p-2"></div>
       </label>
-      <input type="radio" title="galben" name="culoare" id="galben" class="" value="bg-yellow-500" />
+      <input type="radio" title="verde" name="culoare" id="verde" class="hidden" value="bg-green-500" />
+      <label for="verde" class="bg-green-500">
+        <div class="p-2"></div>
+      </label>
+      <input type="radio" title="galben" name="culoare" id="galben" class="hidden" value="bg-yellow-500" />
       <label for="galben" class="bg-yellow-500">
         <div class="p-2"></div>
       </label>
-      <input type="radio" title="albastru" name="culoare" id="albastru" class="" value="bg-blue-500" />
-      <label for="albastru" class="bg-blue-500">
+      <input type="radio" title="rosu" name="culoare" id="rosu" class="hidden" value="bg-red-500" checked />
+      <label for="rosu" class="bg-red-500">
         <div class="p-2"></div>
       </label>
     </fieldset>
@@ -95,7 +99,7 @@
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: ['', 'red', '', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
+            month: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yellow']
           },
           {
             title: false,
@@ -104,7 +108,7 @@
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
+            month: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yellow']
           },
           {
             title: false,
@@ -113,7 +117,7 @@
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
+            month: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yellow']
           },
           {
             title: false,
@@ -122,7 +126,7 @@
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
+            month: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yellow']
           },
           {
             title: false,
@@ -131,7 +135,7 @@
             startDate: 0,
             endDate: 0,
             owner: 'Gigi',
-            month: ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'yellow']
+            month: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yellow']
           }
         ]
       }
@@ -233,10 +237,10 @@
               })
             }
             tableBodyRow.addEventListener('click', e => {
-              // console.log(e.target.dataset.color == '' ? 'no color' : e.target.dataset.color)
               let color = document.querySelector('input[name="culoare"]:checked').value
-              console.log(color)
-              e.target.className = `${color} cursor-pointer`
+              if (e.target.hasAttribute('data-index')) {
+                e.target.className = `${color} cursor-pointer`
+              }
             })
             myTableBody.appendChild(tableBodyRow)
           }
@@ -246,6 +250,17 @@
           this.appendChild(myTable)
         }
       }
+
+      document.querySelectorAll('input[name="culoare"]').forEach(e => {
+        e.nextElementSibling.firstElementChild.addEventListener('click', e => {
+          e.target.parentElement.parentElement.querySelectorAll('label').forEach(item => {
+            if (item.firstElementChild.classList.contains('activecolor')) {
+              item.firstElementChild.classList.remove('activecolor')
+            }
+          })
+          e.target.classList.add('activecolor')
+        })
+      })
 
       customElements.define('my-table', MyTable)
       let myTable = document.createElement('my-table')
